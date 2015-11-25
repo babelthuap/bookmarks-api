@@ -25,6 +25,7 @@ router.post('/', (req, res) => {
       res.status(400).send();
     }
     else {
+      // should update each of the links in the links array
       res.send(doc);
     }
   });
@@ -36,6 +37,7 @@ router.put('/', (req, res) => {
       res.status(400).send();
     }
     else {
+      // should update each of the links in the links array
       res.send(doc);
     }
   });
@@ -47,6 +49,7 @@ router.delete('/', (req, res) => {
       res.status(400).send();
     }
     else {
+      // should update each of the links in the links array
       res.send('Success');
     }
   });
