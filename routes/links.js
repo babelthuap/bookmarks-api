@@ -31,11 +31,25 @@ router.post('/', (req, res) => {
 });
 
 router.put('/', (req, res) => {
-  res.send('');
+  Link.findOneAndUpdate({_id: req.body._id}, req.body, {new: true}, (err, doc) => {
+    if (err) {
+      res.status(400).send();
+    }
+    else {
+      res.send(doc);
+    }
+  });
 });
 
 router.delete('/', (req, res) => {
-  res.send('');
+  Link.findOneAndRemove({_id: req.body._id}, (err, doc) => {
+    if (err) {
+      res.status(400).send();
+    }
+    else {
+      res.send('Success');
+    }
+  });
 });
 
 module.exports = router;
