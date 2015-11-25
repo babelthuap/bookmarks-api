@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.use('/links', links);
-// app.use('/tags', tags);
+app.use('/tags', tags);
 
 // error handlers
 
