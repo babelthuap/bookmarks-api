@@ -4,6 +4,7 @@ let express = require('express');
 let router = express.Router();
 
 let Tag = require('../models/tag');
+let Link = require('../models/link');
 
 router.get('/', (req, res) => {
   Tag.find({}, null, {sort: '-updated'})
@@ -51,6 +52,56 @@ router.delete('/', (req, res) => {
     else {
       // should update each of the links in the links array
       res.send('Success');
+    }
+  });
+});
+
+// this path assosiate the tag with a link updating both
+router.put('/:tag/:link', (req, res) => {
+  Tag.findOneAndUpdate({_id: req.params.tag},
+    { $addToSet: { links: req.params.link } },
+    {new: true}, (err, doc) => {
+    if (err) {
+      res.status(400).send();
+    }
+    else {
+      // should update each of the links in the links array
+      Link.findOneAndUpdate({_id: req.params.link},
+        { $addToSet: { tags: req.params.tag } },
+        {new: true}, (err, doc) => {
+        if (err) {
+          res.status(400).send();
+        }
+        else {
+          // should update each of the tags in the tags array
+          res.send(doc);
+        }
+      });
+    }
+  });
+});
+
+// This path breaks assosiation between the tag and the link
+router.delete('/:tag/:link', (req, res) => {
+  Tag.findOneAndUpdate({_id: req.params.tag},
+    { $pull: { links: req.params.link } },
+    {new: true}, (err, doc) => {
+    if (err) {
+      res.status(400).send();
+    }
+    else {
+      // should update each of the links in the links array
+      Link.findOneAndUpdate({_id: req.params.link},
+        { $pull: { tags: req.params.tag } },
+        {new: true}, (err, doc) => {
+        if (err) {
+          res.status(400).send();
+        }
+        else {
+          // should update each of the tags in the tags array
+          res.send(doc);
+        }
+      });
     }
   });
 });
