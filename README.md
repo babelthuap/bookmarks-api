@@ -15,3 +15,11 @@ _by Nicholas Neumann-Chun and Aleksey Malyshev_
 ## Installation
 
 - run `npm install`, then `node server.js`
+
+## Deployment
+
+Deployed to Heroku under the name `aleksey-nicholas-bookmarks`. Check the GET requests at
+
+- https://aleksey-nicholas-bookmarks.herokuapp.com/links and
+
+- https://aleksey-nicholas-bookmarks.herokuapp.com/tags
