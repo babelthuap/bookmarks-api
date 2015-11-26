@@ -4,8 +4,8 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let linkSchema = mongoose.Schema({
-    title: String,
-    url: String,
+    title: {type: String, unique: true, required: true},
+    url: {type: String, required: true},
     tags: [{type: Schema.Types.ObjectId, ref: 'tags'}],
     updated: {type: Date, default: Date.now}
   });
