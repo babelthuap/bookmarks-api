@@ -8,6 +8,6 @@ let linkSchema = mongoose.Schema({
     url: {type: String, required: true},
     tags: [{type: Schema.Types.ObjectId, ref: 'tags'}],
     updated: {type: Date, default: Date.now}
-  });
+  }, { strict: true });
 
 module.exports = mongoose.model('links', linkSchema);

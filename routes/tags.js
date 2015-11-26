@@ -26,7 +26,6 @@ router.post('/', (req, res) => {
       res.status(400).send();
     }
     else {
-      // should update each of the links in the links array
       res.send(doc);
     }
   });
@@ -38,7 +37,6 @@ router.put('/', (req, res) => {
       res.status(400).send();
     }
     else {
-      // should update each of the links in the links array
       res.send(doc);
     }
   });
@@ -53,7 +51,6 @@ router.delete('/:tag', (req, res) => {
       res.status(400).send('Not Found');
     }
     else {
-      // should update each of the links in the links array
       res.send('Success');
     }
   });
@@ -68,7 +65,6 @@ router.put('/:tag/:link', (req, res) => {
       res.status(400).send();
     }
     else {
-      // should update each of the links in the links array
       Link.findOneAndUpdate({_id: req.params.link},
         { $addToSet: { tags: req.params.tag } },
         {new: true}, (err, doc) => {
@@ -76,7 +72,6 @@ router.put('/:tag/:link', (req, res) => {
           res.status(400).send();
         }
         else {
-          // should update each of the tags in the tags array
           res.send(doc);
         }
       });
@@ -93,7 +88,6 @@ router.delete('/:tag/:link', (req, res) => {
       res.status(400).send();
     }
     else {
-      // should update each of the links in the links array
       Link.findOneAndUpdate({_id: req.params.link},
         { $pull: { tags: req.params.tag } },
         {new: true}, (err, doc) => {
@@ -101,7 +95,6 @@ router.delete('/:tag/:link', (req, res) => {
           res.status(400).send();
         }
         else {
-          // should update each of the tags in the tags array
           res.send(doc);
         }
       });
