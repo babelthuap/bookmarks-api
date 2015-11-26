@@ -48,6 +48,9 @@ router.delete('/', (req, res) => {
     if (err) {
       res.status(400).send();
     }
+    else if (!doc) {
+      res.status(400).send('Not Found');
+    }
     else {
       // should update each of the tags in the tags array
       res.send('Success');
