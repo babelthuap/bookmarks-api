@@ -43,8 +43,8 @@ router.put('/', (req, res) => {
   });
 });
 
-router.delete('/', (req, res) => {
-  Link.findOneAndRemove({_id: req.body._id}, (err, doc) => {
+router.delete('/:link', (req, res) => {
+  Link.findOneAndRemove({_id: req.params.link}, (err, doc) => {
     if (err) {
       res.status(400).send();
     }

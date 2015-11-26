@@ -44,9 +44,8 @@ router.put('/', (req, res) => {
   });
 });
 
-router.delete('/', (req, res) => {
-  console.log(req.body);
-  Tag.findOneAndRemove({_id: req.body._id}, (err, doc) => {
+router.delete('/:tag', (req, res) => {
+  Tag.findOneAndRemove({_id: req.params.tag}, (err, doc) => {
     if (err) {
       res.status(400).send();
     }
